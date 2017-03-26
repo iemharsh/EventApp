@@ -12,6 +12,7 @@ var navbar_component_1 = require("./nav/navbar.component");
 var events_list_component_1 = require("./events/events-list.component");
 var event_thumbnail_component_1 = require("./events/event-thumbnail.component");
 var event_service_1 = require("./shared/event.service");
+var toastr_service_1 = require("./common/toastr.service");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -21,7 +22,7 @@ AppModule = __decorate([
     core_1.NgModule({
         imports: [platform_browser_1.BrowserModule],
         declarations: [event_app_component_1.EventsAppComponent, navbar_component_1.NavBarComponent, events_list_component_1.EventsListComponent, event_thumbnail_component_1.EventThumbnailComponent],
-        providers: [event_service_1.EventService],
+        providers: [event_service_1.EventService, toastr_service_1.ToastrService],
         bootstrap: [event_app_component_1.EventsAppComponent]
     })
 ], AppModule);
