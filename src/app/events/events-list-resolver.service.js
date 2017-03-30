@@ -8,26 +8,20 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var router_1 = require("@angular/router");
 var core_1 = require("@angular/core");
-var event_service_1 = require("../shared/event.service");
-var EventRouteActivator = (function () {
-    function EventRouteActivator(eventService, router) {
+var event_service_1 = require("./shared/event.service");
+var EventListResolver = (function () {
+    function EventListResolver(eventService) {
         this.eventService = eventService;
-        this.router = router;
     }
-    EventRouteActivator.prototype.canActivate = function (route) {
-        var eventExists = !!this.eventService.getEvent(+route.params['id']);
-        if (!eventExists) {
-            this.router.navigate(['/404']);
-        }
-        return eventExists;
+    EventListResolver.prototype.resolve = function () {
+        return this.eventService.getEvents().map(function (events) { return events; });
     };
-    return EventRouteActivator;
+    return EventListResolver;
 }());
-EventRouteActivator = __decorate([
+EventListResolver = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [event_service_1.EventService, router_1.Router])
-], EventRouteActivator);
-exports.EventRouteActivator = EventRouteActivator;
-//# sourceMappingURL=event-route-activator.service.js.map
+    __metadata("design:paramtypes", [event_service_1.EventService])
+], EventListResolver);
+exports.EventListResolver = EventListResolver;
+//# sourceMappingURL=events-list-resolver.service.js.map

@@ -9,24 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var event_service_1 = require("../shared/event.service");
+var auth_service_1 = require("./auth.service");
 var router_1 = require("@angular/router");
-var EventDetailsComponent = (function () {
-    function EventDetailsComponent(eventService, route) {
-        this.eventService = eventService;
-        this.route = route;
+var LoginComponent = (function () {
+    function LoginComponent(authService, router) {
+        this.authService = authService;
+        this.router = router;
     }
-    EventDetailsComponent.prototype.ngOnInit = function () {
-        this.event = this.eventService.getEvent(+this.route.snapshot.params['id']);
+    LoginComponent.prototype.login = function (formValues) {
+        this.authService.loginUser(formValues.userName, formValues.password);
+        this.router.navigate(['/events']);
     };
-    return EventDetailsComponent;
+    LoginComponent.prototype.cancel = function () {
+        this.router.navigate(['/events']);
+    };
+    return LoginComponent;
 }());
-EventDetailsComponent = __decorate([
+LoginComponent = __decorate([
     core_1.Component({
-        templateUrl: 'app/events/event-details/event-details.component.html',
-        styles: ["\n    .container { padding-left:20px; padding-right:20px; }\n    .event-image { height: 100px; }\n  "]
+        templateUrl: './login.component.html',
+        styles: ["\n    em { float: right; color: #E05C65; padding-left: 10px;}\n  "]
     }),
-    __metadata("design:paramtypes", [event_service_1.EventService, router_1.ActivatedRoute])
-], EventDetailsComponent);
-exports.EventDetailsComponent = EventDetailsComponent;
-//# sourceMappingURL=event-details.component.js.map
+    __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
+], LoginComponent);
+exports.LoginComponent = LoginComponent;
+//# sourceMappingURL=login.component.js.map
