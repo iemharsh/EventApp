@@ -15,6 +15,7 @@ var router_1 = require("@angular/router");
 var routes_1 = require("./routes");
 var _404_component_1 = require("./errors/404.component");
 var auth_service_1 = require("./user/auth.service");
+var forms_1 = require("@angular/forms");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -22,10 +23,16 @@ var AppModule = (function () {
 }());
 AppModule = __decorate([
     core_1.NgModule({
-        imports: [platform_browser_1.BrowserModule, router_1.RouterModule.forRoot(routes_1.appRoutes)],
+        imports: [
+            platform_browser_1.BrowserModule,
+            forms_1.FormsModule,
+            forms_1.ReactiveFormsModule,
+            router_1.RouterModule.forRoot(routes_1.appRoutes)
+        ],
         declarations: [event_app_component_1.EventsAppComponent, navbar_component_1.NavBarComponent, index_1.EventsListComponent, index_1.EventThumbnailComponent, index_1.EventDetailsComponent,
             index_1.CreateEventComponent,
-            _404_component_1.Error404Component
+            _404_component_1.Error404Component,
+            index_1.CreateSessionComponent
         ],
         providers: [
             index_1.EventService,
@@ -43,6 +50,6 @@ function checkDirtyState(component) {
     if (component.isDirty) {
         return window.confirm('Event is not Saved. Do you really want to cancel');
     }
-    return false;
+    return true;
 }
 //# sourceMappingURL=app.module.js.map

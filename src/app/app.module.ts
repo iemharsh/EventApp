@@ -8,7 +8,8 @@ import {
   EventDetailsComponent,
   CreateEventComponent,
   EventRouteActivator,
-  EventListResolver
+  EventListResolver,
+  CreateSessionComponent
 }
 from './events/index';
 
@@ -20,13 +21,19 @@ import {RouterModule} from "@angular/router";
 import {appRoutes} from "./routes";
 import {Error404Component} from "./errors/404.component";
 import {AuthService} from "./user/auth.service";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 
 @NgModule({
-  imports:      [ BrowserModule, RouterModule.forRoot(appRoutes) ],
+  imports:      [
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forRoot(appRoutes) ],
   declarations: [ EventsAppComponent, NavBarComponent, EventsListComponent, EventThumbnailComponent, EventDetailsComponent,
     CreateEventComponent,
-    Error404Component
+    Error404Component,
+    CreateSessionComponent
   ],
 
   providers: [
@@ -45,5 +52,5 @@ function checkDirtyState(component: CreateEventComponent) {
   if(component.isDirty) {
     return window.confirm('Event is not Saved. Do you really want to cancel');
   }
-  return false;
+  return true;
 }
